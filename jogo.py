@@ -1,43 +1,52 @@
-#!/usr/bin/env python3
-
 import time
-from regras_jogo.regras_abstratas import construir_jogo
-from regras_jogo.personagens import Personagens
-from agentes.abstrato import construir_agente
-from agentes.tipos import TiposAgentes
 
-def ler_tempo(em_turnos=False):
-    """ Se o jogo for em turnos, retorna a passada de 1 rodada.
-    
-    Se não for em turno, é continuo ou estratégico, retorna tempo
-    preciso (ns) do relógio.
-    """
-    return 1 if em_turnos else time.time()
+
+def mundo():
+    sudoku = [[0, 6, 0, 0, 0, 3, 8, 7, 2], [1, 0, 2, 0, 7, 0, 5, 3, 6], [0, 0, 0, 2, 6, 5, 4, 0, 1], [7, 3, 1, 5, 0, 0, 9, 0, 8], [0, 5, 0, 0, 8, 0, 0, 4, 3], [6, 8, 0, 3, 0, 9, 0, 5, 0], [5, 2, 0, 0, 0, 0, 0, 8, 0], [0, 1, 0, 8, 9, 7, 6, 2, 0], [8, 0, 0, 6, 0, 0, 0, 1, 4]]
+    return(sudoku)
 
 
 def iniciar_jogo():
-    
-    # Inicializar e configurar jogo
-    jogo = construir_jogo()
-    personagem_jogador = jogo.registrarAgentePersonagem(Personagens.O_JOGADOR)
-    agente_jogador = construir_agente(TiposAgentes.PREPOSTO_HUMANO, Personagens.O_JOGADOR)
-    
-    tempo_de_jogo = 0
-    while not jogo.isFim():
-        
-        # Mostrar mundo ao jogador
-        ambiente_perceptivel = jogo.gerarCampoVisao(personagem_jogador)
-        agente_jogador.adquirirPercepcao(ambiente_perceptivel)
-        
-        # Decidir jogada e apresentar ao jogo
-        acao = agente_jogador.escolherProximaAcao()
-        jogo.registrarProximaAcao(personagem_jogador, acao)
+    print("Tabuleiro do sudoku \n")
+    sudoku = mundo()
+    for x in range(len(sudoku)):
+        if x % 3 == 0 and x != 0:
+            print("")
+        for y in range(len(sudoku[0])):
+            if y % 3 == 0 and y != 0:
+                print(" ", end="")
+            if y == 8:
+                print(sudoku[x][y])
+            else:
+                print(str(sudoku[x][y]) + " ", end="")
 
-        # Atualizar jogo
-        tempo_corrente = ler_tempo()
-        jogo.atualizarEstado(tempo_corrente - tempo_de_jogo)
-        tempo_de_jogo += tempo_corrente
+def humano():
+    print("Digite linha por linha da tabela do sudoku resolvida, para ser verificado.")
+    sudoku_aux = []
+    for i in range(1,10):
+        sudoku_aux.append(list(map(int,input().strip().split())))
+    return(sudoku_aux)
+
+def bfs():
+    print("Busca por largura")
+
+def dfs():
+    print("Busca por profundidade")
+
+def selecaoAgente():
+    print("1- Agente Humando")
+    print("2- BFS")
+    print("3- DFS")
+    escolha = int(input())
+    if escolha == 1:
+        humano()
+    elif escolha == 2:
+        bfs()
+    elif escolha == 3:
+        dfs()
 
 
 if __name__ == '__main__':
     iniciar_jogo()
+    print("")
+    selecaoAgente()
