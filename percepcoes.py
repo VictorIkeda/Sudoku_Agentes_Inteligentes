@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from typing import Optional, Tuple
-
+from typing import Optional, Tuple, Set
+from typing import List
 @dataclass
 class PercepcoesJogador():
     '''Coloque aqui atributos que descrevam as percepções possíveis de
@@ -8,6 +8,6 @@ class PercepcoesJogador():
     
     Vide documentação sobre dataclasses em python.
     '''
-
-    sudoku: list(map(int,[]))
+    sudoku_valor: List[int]
+        
     

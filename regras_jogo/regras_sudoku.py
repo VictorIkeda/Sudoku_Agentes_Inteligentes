@@ -35,7 +35,9 @@ class RegrasSudoku(AbstractRegrasJogo):
         """
         
         sudoku = self.tabuleiro
-        
+        percepcoes_jogador = PercepcoesJogador(
+            sudoku_valor=list[self.tabuleiro]
+        )
         return sudoku
 
     
