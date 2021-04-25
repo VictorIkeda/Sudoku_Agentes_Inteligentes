@@ -8,7 +8,7 @@ class AgentePrepostoESHumano(AgenteAbstrato):
         na tela para o usuário saber o que seu agente está percebendo.
         """
         
-        print("\n Sudoku")
+        print("Sudoku")
         for i in range(len(percepcao_mundo)):
             if i % 3 == 0 and i != 0:
                 print("")
