@@ -1,7 +1,7 @@
 from .regras_abstratas import AbstractRegrasJogo
 from .personagens import Personagens
 from percepcoes import PercepcoesJogador
-from acoes import AcaoJogador, AcoesJogador
+from acoes import AcoesJogador
 
 class RegrasSudoku(AbstractRegrasJogo):
     def __init__(self) -> None:
@@ -91,16 +91,3 @@ def construir_jogo(*args,**kwargs):
     parâmetros. Pode-se mudar à vontade a assinatura do método.
     """
     return RegrasSudoku()
-
-# class regras():
-    
-#     def gerarMundo(self):
-#         self.sudoku = [[0, 6, 0, 0, 0, 3, 8, 7, 2], [1, 0, 2, 0, 7, 0, 5, 3, 6], [0, 0, 0, 2, 6, 5, 4, 0, 1], [7, 3, 1, 5, 0, 0, 9, 0, 8], [0, 5, 0, 0, 8, 0, 0, 4, 3], [6, 8, 0, 3, 0, 9, 0, 5, 0], [5, 2, 0, 0, 0, 0, 0, 8, 0], [0, 1, 0, 8, 9, 7, 6, 2, 0], [8, 0, 0, 6, 0, 0, 0, 1, 4]]
-#         return self.sudoku
-    
-#     def Verificar_Vazio(sudoku):
-#         for x in range(len(sudoku)):
-#             for y in range(len(sudoku[0])):
-#                 if sudoku[x][y] == 0:
-#                     return True
-#         return False
