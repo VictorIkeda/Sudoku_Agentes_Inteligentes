@@ -23,18 +23,21 @@ class AgentePrepostoESHumano(AgenteAbstrato):
     def escolherProximaAcao(self):
         print("digite a cordenada que deseja motificar")
         print("cordenada x")
-        x = int(input())
-        if(x > 9):
-            print("comando invalido")
-        else:
-            print("cordenada y")
-            y = int(input())
-            if(y > 9):
+        try:
+            x = int(input())
+            if(x > 8):
                 print("comando invalido")
             else:
-                print("valor que deseja adicionar")
-                valor = int(input())
-                if (valor > 9):
-                    print("valor invalido")
+                print("cordenada y")
+                y = int(input())
+                if(y > 8):
+                    print("comando invalido")
                 else:
-                    return AcaoJogador.adicionar_valor(x,y,valor)
+                    print("valor que deseja adicionar")
+                    valor = int(input())
+                    if (valor > 9):
+                        print("valor invalido")
+                    else:
+                        return AcaoJogador.adicionar_valor(x,y,valor)
+        except:
+            print("Comando invalido")

@@ -8,6 +8,7 @@ class RegrasSudoku(AbstractRegrasJogo):
         super().__init__()
         sudoku_completo = [[0, 6, 0, 0, 0, 3, 8, 7, 2], [1, 0, 2, 0, 7, 0, 5, 3, 6], [0, 0, 0, 2, 6, 5, 4, 0, 1], [7, 3, 1, 5, 0, 0, 9, 0, 8], [0, 5, 0, 0, 8, 0, 0, 4, 3], [6, 8, 0, 3, 0, 9, 0, 5, 0], [5, 2, 0, 0, 0, 0, 0, 8, 0], [0, 1, 0, 8, 9, 7, 6, 2, 0], [8, 0, 0, 6, 0, 0, 0, 1, 4]]
         self.tabuleiro = sudoku_completo
+        self.original = sudoku_completo
         self.id_personagens = {Personagens.JOGADOR_SUDOKU: 0}
         self.acoes_personagens = {0: None}
         self.msg_jogador = None
@@ -22,7 +23,21 @@ class RegrasSudoku(AbstractRegrasJogo):
     def isFim(self):
         """ Boolean indicando fim de jogo em True.
         """
-        return 
+        for x in range(len(self.tabuleiro)):
+            for y in range(len(self.tabuleiro[0])):
+                if self.tabuleiro[x][y] == 0:
+                    return False
+        for i in self.tabuleiro:
+            if sorted(list(set(i))) != sorted(i):
+                return False
+        coluna = []
+        for j in range(len(self.tabuleiro)):
+            for i in self.tabuleiro:
+                coluna += [i[j]]
+            if sorted(list(set(coluna))) != sorted(coluna):
+                return False
+            coluna = []
+        return True
 
     
     def gerarCampoVisao(self, id_agente):
@@ -63,7 +78,6 @@ class RegrasSudoku(AbstractRegrasJogo):
                     print("\n ===== Só pode alterar os valores que estão vazios(Representado por 0) =====\n")
         except:
             print("Numeros acima de 9 ou letras nao sao permitidos")
-        return
     
     
     def terminarJogo(self):
