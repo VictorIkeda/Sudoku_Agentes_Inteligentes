@@ -18,7 +18,7 @@ def iniciar_jogo():
     # Inicializar e configurar jogo
     jogo = construir_jogo()
     personagem_jogador = jogo.registrarAgentePersonagem(Personagens.JOGADOR_SUDOKU)
-    agente_jogador = construir_agente(TiposAgentes.PREPOSTO_HUMANO, Personagens.JOGADOR_SUDOKU)
+    agente_jogador = construir_agente(TiposAgentes.AUTO_BFS, Personagens.JOGADOR_SUDOKU)
     
     tempo_de_jogo = 0
     while not jogo.isFim():

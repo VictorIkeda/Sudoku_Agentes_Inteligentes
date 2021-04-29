@@ -7,9 +7,8 @@ from .buscadores.busca import busca_arvore_bfs
 class AgenteAutomaticoBfs(AgenteAbstrato):
     def __init__(self) -> None:
         super().__init__()
-
-        self.problema: ProblemaSudoku = None
-        self.solucao: list = None
+        self.problema: ProblemaSudoku = ProblemaSudoku(ProblemaSudoku.estado_inicial())
+        self.no_solucao = busca_arvore_bfs(self.problema)
 
     def adquirirPercepcao(self, percepcao_mundo: PercepcoesJogador):
         ''' Forma uma percepcao interna por meio de seus sensores, a partir das
@@ -17,22 +16,11 @@ class AgenteAutomaticoBfs(AgenteAbstrato):
         '''
         AgenteAutomaticoBfs.desenhar_tabuleiro(percepcao_mundo)
 
-        if not self.solucao:
-            self.problema = ProblemaSudoku()
 
     def escolherProximaAcao(self):
-        if not self.solucao:
-            no_solucao = busca_arvore_bfs(self.problema)
-            self.solucao = no_solucao.caminho_acoes()
-            print(len(self.solucao), self.solucao)
-            if not self.solucao:
-                raise Exception("Agente BFS não encontrou solução.")
-        
-        acao = self.solucao.pop(0)
-        print(f"Próxima ação é {acao}.")
-
-
-        x, y, v = acao[1],acao[2],acao[0]
+        acao = self.no_solucao.pop(0)
+        x, y, v = int(acao[0]), int(acao[1]), int(acao[2])
+        print(f"\n A proxima acao sera em X:{x} Y: {y} colocando o valor {v} \n")
         return AcaoJogador.adicionar_valor(x, y, v)
     
     def desenhar_tabuleiro(percepcao_mundo: PercepcoesJogador):

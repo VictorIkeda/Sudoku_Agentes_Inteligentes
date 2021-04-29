@@ -5,6 +5,7 @@ class No():
         self.estado = estado
         self.acoes = acoes
 
+
     def caminho_acoes(self, problema):
         return [self.criar_no_filho(problema, acoes)
                 for acoes in problema.acoes(self.estado)]
@@ -13,7 +14,11 @@ class No():
         proximo = problema.resultado(self.estado, acoes)
         return No(proximo, acoes)
 
+    def historico(self, acoes):
+        self.aux.append(acoes)
+        
 def busca_em_arvore(problema):
+    estados = []
     folha = No(problema.tabela)
     if problema.teste_objetivo(folha.estado):
         return folha
@@ -22,8 +27,9 @@ def busca_em_arvore(problema):
     while (borda.qsize() != 0):
         folha = borda.get()
         for filho in folha.caminho_acoes(problema):
+            estados.append([filho.acoes[1],filho.acoes[2],filho.acoes[0]])
             if problema.teste_objetivo(filho.estado):
-                return filho
+                return estados
             borda.put(filho)
     return None
 
