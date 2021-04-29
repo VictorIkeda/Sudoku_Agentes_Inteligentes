@@ -1,7 +1,7 @@
 import time
 from regras_jogo.regras_sudoku import construir_jogo
 from regras_jogo.personagens import Personagens
-from agentes.abstrato import construir_agente
+from agentes import construir_agente
 from agentes.tipos import TiposAgentes
 
 
@@ -35,6 +35,7 @@ def iniciar_jogo():
         # tempo_corrente = ler_tempo()
         jogo.atualizarEstado(1)
         tempo_de_jogo += 1
+        
 
 if __name__ == '__main__':
     iniciar_jogo()

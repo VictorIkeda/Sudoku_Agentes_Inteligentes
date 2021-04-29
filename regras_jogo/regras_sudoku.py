@@ -72,10 +72,10 @@ class RegrasSudoku(AbstractRegrasJogo):
         try:
             if acao_jogador.tipo == AcoesJogador.ADICIONAR_VALOR:
                 x , y, valor = acao_jogador.parametros
-                if self.tabuleiro[x][y] == 0:
-                    self.tabuleiro[int(x)][int(y)] = int(valor)
-                else:
-                    print("\n ===== Só pode alterar os valores que estão vazios(Representado por 0) =====\n")
+                # if self.tabuleiro[x][y] == 0:
+                self.tabuleiro[int(x)][int(y)] = int(valor)
+                # else:
+                    # print("\n ===== Só pode alterar os valores que estão vazios(Representado por 0) =====\n")
         except:
             print("Numeros acima de 9 ou letras nao sao permitidos")
     
