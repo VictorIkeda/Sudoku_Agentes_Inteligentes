@@ -13,9 +13,6 @@ class No():
     def criar_no_filho(self, problema, acoes):
         proximo = problema.resultado(self.estado, acoes)
         return No(proximo, acoes)
-
-    def historico(self, acoes):
-        self.aux.append(acoes)
         
 def busca_em_arvore(problema):
     estados = []
@@ -33,4 +30,21 @@ def busca_em_arvore(problema):
             borda.put(filho)
     return None
 
+def busca_em_arvore_DFS(problema):
+    estados = []
+    folha = No(problema.tabela)
+    if problema.teste_objetivo(folha.estado):
+        return folha.estado
+    pilha = []
+    pilha.append(folha)
+    while pilha:
+        no = pilha.pop()
+        if no.acoes != None:
+            estados.append([no.acoes[1],no.acoes[2],no.acoes[0]])
+        if problema.teste_objetivo(no.estado):
+            return estados
+        pilha.extend(no.caminho_acoes(problema)) 
+    return None
+
 busca_arvore_bfs = busca_em_arvore
+busca_arvore_dfs = busca_em_arvore_DFS
