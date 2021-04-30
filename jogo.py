@@ -35,7 +35,8 @@ def iniciar_jogo():
         # tempo_corrente = ler_tempo()
         jogo.atualizarEstado(1)
         tempo_de_jogo += 1
-        
+    ambiente_perceptivel = jogo.gerarCampoVisao(personagem_jogador)
+    agente_jogador.adquirirPercepcao(ambiente_perceptivel)
 
 if __name__ == '__main__':
     iniciar_jogo()
