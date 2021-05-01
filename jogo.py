@@ -18,7 +18,7 @@ def iniciar_jogo():
     # Inicializar e configurar jogo
     jogo = construir_jogo()
     personagem_jogador = jogo.registrarAgentePersonagem(Personagens.JOGADOR_SUDOKU)
-    agente_jogador = construir_agente(TiposAgentes.AUTO_DFS, Personagens.JOGADOR_SUDOKU)
+    agente_jogador = construir_agente(TiposAgentes.PREPOSTO_HUMANO, Personagens.JOGADOR_SUDOKU)
     
     tempo_de_jogo = 0
     while not jogo.isFim():
@@ -35,8 +35,9 @@ def iniciar_jogo():
         # tempo_corrente = ler_tempo()
         jogo.atualizarEstado(1)
         tempo_de_jogo += 1
-        
-    ambiente_perceptivel = jogo.gerarCampoVisao(personagem_jogador)
+    
+    #Mostra a tabuleiro final
+    ambiente_perceptivel = jogo.gerarCampoVisao(personagem_jogador) 
     agente_jogador.adquirirPercepcao(ambiente_perceptivel)
 
 if __name__ == '__main__':

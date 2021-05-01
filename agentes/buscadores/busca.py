@@ -14,7 +14,7 @@ class No():
         proximo = problema.resultado(self.estado, acoes)
         return No(proximo, acoes)
         
-def busca_em_arvore(problema):
+def busca_em_arvore_BFS(problema):
     estados = []
     folha = No(problema.tabela)
     if problema.teste_objetivo(folha.estado):
@@ -26,6 +26,7 @@ def busca_em_arvore(problema):
         for filho in folha.caminho_acoes(problema):
             estados.append([filho.acoes[1],filho.acoes[2],filho.acoes[0]])
             if problema.teste_objetivo(filho.estado):
+                print("Resultado \n",filho.estado, "\n")
                 return estados
             borda.put(filho)
     return None
@@ -42,9 +43,10 @@ def busca_em_arvore_DFS(problema):
         if no.acoes != None:
             estados.append([no.acoes[1],no.acoes[2],no.acoes[0]])
         if problema.teste_objetivo(no.estado):
+            print("Resultado \n", no.estado,"\n")
             return estados
         pilha.extend(no.caminho_acoes(problema)) 
     return None
 
-busca_arvore_bfs = busca_em_arvore
+busca_arvore_bfs = busca_em_arvore_BFS
 busca_arvore_dfs = busca_em_arvore_DFS
