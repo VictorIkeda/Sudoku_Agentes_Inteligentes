@@ -7,3 +7,4 @@ Projeto de inteligência artificial, com o objetivo de desenvolver agentes intel
 * BFS (Busca em largura)
 * DFS (Busca por profundidade)
 
+**Para executar sem problemas recomendo a utilizar o python 3.9.4**
