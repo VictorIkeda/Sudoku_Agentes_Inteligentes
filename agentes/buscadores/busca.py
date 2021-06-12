@@ -1,5 +1,5 @@
 from queue import Queue
-
+import heapq
 class No():
     def __init__(self, estado, acoes=None):
         self.estado = estado
@@ -48,5 +48,46 @@ def busca_em_arvore_DFS(problema):
         pilha.extend(no.caminho_acoes(problema)) 
     return None
 
+def busca_em_A_estrela(problema):
+    estado_atual = []
+    folha = No(problema.tabela)
+    novo_estado = Queue()
+    novo_estado.put(folha)
+    borda = []
+    while (True):
+        folha = novo_estado.get()
+        for filho in folha.caminho_acoes(problema):
+            estado_atual.append([filho.acoes[1],filho.acoes[2],filho.acoes[0]])
+            if problema.isObjetivo(filho.estado):
+                print("Resultado \n",filho.estado, "\n")
+                return estado_atual
+            else:
+                novo_estado.put(filho)
+                borda = problema.tabela
+                heapq.heapify(borda)
+
+def busca_em_arvore_GBFS(problema):
+    estado_atual = []
+    folha = No(problema.tabela)
+    novo_estado = Queue()
+    novo_estado.put(folha)
+    borda = []
+    while (True):
+        folha = novo_estado.get()
+        for filho in folha.caminho_acoes(problema):
+            estado_atual.append([filho.acoes[1],filho.acoes[2],filho.acoes[0]])
+            if problema.isObjetivo(filho.estado):
+                print("Resultado \n",filho.estado, "\n")
+                return estado_atual
+            if problema.custo(borda) <= 1:
+                novo_estado.put(filho)
+                borda = problema.tabela
+                heapq.heapify(borda)
+
+
+
+
 busca_arvore_bfs = busca_em_arvore_BFS
 busca_arvore_dfs = busca_em_arvore_DFS
+A_estrela = busca_em_A_estrela
+busca_arvore_gbfs = busca_em_arvore_GBFS
